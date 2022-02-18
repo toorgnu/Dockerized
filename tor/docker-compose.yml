@@ -8,3 +8,9 @@ services:
       - 127.0.0.1:9050:9050
     volumes:
       - ./torrc-config:/etc/tor
+    healthcheck:
+      test: curl -s --socks5 127.0.0.1:9050 'https://check.torproject.org/' | grep -qm1 Congratulations
+      interval: 60s
+      timeout: 30s
+      start_period: 20s
+      retries: 3
