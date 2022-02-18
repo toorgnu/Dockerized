@@ -6,7 +6,7 @@ RUN echo http://dl-cdn.alpinelinux.org/alpine/edge/testing >> /etc/apk/repositor
 
 EXPOSE 9050
 
-HEALTHCHECK --interval=60s --timeout=15s --start-period=25s \
+HEALTHCHECK --interval=60s --timeout=30s --start-period=20s --retries=3 \
     CMD curl -s --socks5 127.0.0.1:9050 'https://check.torproject.org/' | grep -qm1 Congratulations
 
 CMD ["tor"]
